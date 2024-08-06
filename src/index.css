@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Altura total de la vista */
+  }
+  
+  .main-content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .sidebar {
+    width: 250px; /* Ajusta el ancho según sea necesario */
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
