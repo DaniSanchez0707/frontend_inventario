@@ -1,0 +1,47 @@
+name: Build & Deploy Frontend
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env file for Vite
+        run: |
+          echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
+          
+
+      - name: Print .env file
+        run: cat .env
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Archive files
+        uses: a7ul/tar-action@v1.1.0
+        with:
+          command: c
+          cwd: "./"
+          files: |
+            dist/
+            .env
+          outPath: deploy.tar
+
+      - name: Deploy App to CapRover
+        uses: caprover/deploy-from-github@v1.0.1
+        with:
+          server: '${{ secrets.CAPROVER_SERVER }}'
+          app: '${{ secrets.APP_NAME }}'
+          token: '${{ secrets.APP_TOKEN }}'
+          tar: deploy.tar
