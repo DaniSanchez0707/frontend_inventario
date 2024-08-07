@@ -36,6 +36,7 @@ jobs:
           files: |
             dist/
             captain-definition
+            package.json
             .env
           outPath: deploy.tar
 
