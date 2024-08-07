@@ -7,15 +7,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-deploy:name: Build & Deploy Frontend
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
@@ -40,54 +31,8 @@ jobs:
 
       - name: Build the project
         env:
-          PATH: ./node_modules/.bin:$PATH # Agregar node_modules/.bin al PATH
+          PATH: ${{ runner.tool_cache }}/node_modules/.bin:$PATH # Asegurar que node_modules/.bin esté en el PATH
         run: npm run build
-
-      - name: Archive files
-        uses: a7ul/tar-action@v1.1.0
-        with:
-          command: c
-          cwd: "./"
-          files: |
-            dist/
-            captain-definition
-            package.json
-            .env
-          outPath: deploy.tar
-
-      - name: Deploy App to CapRover
-        uses: caprover/deploy-from-github@v1.0.1
-        with:
-          server: '${{ secrets.CAPROVER_SERVER }}'
-          app: '${{ secrets.APP_NAME }}'
-          token: '${{ secrets.APP_TOKEN }}'
-          tar: deploy.tar
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20' # Asegúrate de usar la versión correcta de Node.js
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Create .env file for Vite
-        run: |
-          echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
-          
-
-      - name: Print .env file
-        run: cat .env
-
-      - name: Build the project
-        run: npm run build
-      
 
       - name: Archive files
         uses: a7ul/tar-action@v1.1.0
