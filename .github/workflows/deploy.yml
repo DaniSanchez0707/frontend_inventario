@@ -23,7 +23,8 @@ jobs:
         run: npm install
 
       - name: Verify Vite Installation
-        run: npx vite --version
+        run: npm install vite --save-dev
+
 
       - name: Create .env file for Vite
         run: echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
