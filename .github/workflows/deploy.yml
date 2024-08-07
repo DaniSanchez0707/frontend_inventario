@@ -34,6 +34,9 @@ jobs:
 
       - name: Build the project
         run: npm run build
+        
+       -name: prueba
+        run: npm run start
 
       - name: Archive files
         uses: a7ul/tar-action@v1.1.0
