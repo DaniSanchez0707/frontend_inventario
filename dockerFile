@@ -1,11 +1,21 @@
-FROM node:20.1.0
+# Usa una imagen base de Node.js
+FROM node:18
 
+# Crea y establece el directorio de trabajo
 WORKDIR /app
 
-COPY package.json .
+# Copia los archivos de tu aplicación
+COPY package*.json ./
+COPY . .
 
+# Instala las dependencias
 RUN npm install
 
+# Instala Vite globalmente si es necesario
+RUN npm install -g vite
 
-COPY . .
+# Expone el puerto en el que Vite se ejecutará
+EXPOSE 5173
+
+# Comando para iniciar la aplicación
 CMD ["npm", "run", "start"]
