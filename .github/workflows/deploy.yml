@@ -17,23 +17,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20' # Asegúrate de usar la versión correcta de Node.js
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Install Vite Globally
-        run: npm install -g vite
-
       - name: Verify Vite Installation
-        run: |
-          echo "Vite version:"
-          vite --version
+        run: npx vite --version
 
       - name: Create .env file for Vite
         run: |
           echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
-          
+
       - name: Print .env file
         run: cat .env
 
