@@ -35,6 +35,7 @@ jobs:
           cwd: "./"
           files: |
             dist/
+            captain-definition
             .env
           outPath: deploy.tar
 
