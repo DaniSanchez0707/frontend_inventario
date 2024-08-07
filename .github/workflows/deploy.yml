@@ -41,6 +41,7 @@ jobs:
           command: c
           cwd: "./"
           files: |
+            ./dist/
             captain-definition
             package.json
             .env
