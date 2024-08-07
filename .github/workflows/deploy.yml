@@ -24,8 +24,8 @@ jobs:
 
       - name: Create .env file for Vite
         run: |
-          echo VITE_API_URL=${{ secrets.VITE_API_URL }} >> .env
-          echo VITE_PORT=5173 >> .env
+          echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
+          
 
       - name: Print .env file
         run: cat .env
@@ -33,8 +33,6 @@ jobs:
       - name: Build the project
         run: npm run build
       
-      - name: Running start
-        run: npm run start
 
       - name: Archive files
         uses: a7ul/tar-action@v1.1.0
