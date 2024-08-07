@@ -25,14 +25,14 @@ jobs:
       - name: Create .env file for Vite
         run: |
           echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
+          
 
       - name: Print .env file
         run: cat .env
 
       - name: Build the project
-        env:
-          PATH: ${{ runner.tool_cache }}/node_modules/.bin:$PATH # Asegurar que node_modules/.bin esté en el PATH
         run: npm run build
+      
 
       - name: Archive files
         uses: a7ul/tar-action@v1.1.0
