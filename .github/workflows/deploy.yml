@@ -26,6 +26,9 @@ jobs:
         run: |
           echo "Vite version:"
           npx vite --version
+        # Puedes agregar `PATH` si necesitas ajustar la ubicación
+        env:
+          PATH: ${{ runner.tool_cache }}/node/${{ steps.setup-node.outputs.node-version }}/bin:${{ env.PATH }}
 
       - name: Create .env file for Vite
         run: |
