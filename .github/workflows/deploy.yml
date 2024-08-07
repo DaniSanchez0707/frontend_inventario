@@ -32,8 +32,7 @@ jobs:
       - name: Print .env file
         run: cat .env
 
-      - name: Build the project
-        run: npm run build
+    
 
       - name: Archive files
         uses: a7ul/tar-action@v1.1.0
@@ -41,7 +40,6 @@ jobs:
           command: c
           cwd: "./"
           files: |
-            dist
             captain-definition
             package.json
             .env
