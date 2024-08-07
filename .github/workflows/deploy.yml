@@ -26,17 +26,13 @@ jobs:
         run: npx vite --version
 
       - name: Create .env file for Vite
-        run: |
-          echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
+        run: echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
 
       - name: Print .env file
         run: cat .env
 
       - name: Build the project
         run: npm run build
-
-      - name: prueba
-        run: npm run start
 
       - name: Archive files
         uses: a7ul/tar-action@v1.1.0
