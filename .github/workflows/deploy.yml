@@ -22,13 +22,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Vite Globally
+        run: npm install -g vite
+
       - name: Verify Vite Installation
         run: |
           echo "Vite version:"
-          npx vite --version
-        # Puedes agregar `PATH` si necesitas ajustar la ubicación
-        env:
-          PATH: ${{ runner.tool_cache }}/node/${{ steps.setup-node.outputs.node-version }}/bin:${{ env.PATH }}
+          vite --version
 
       - name: Create .env file for Vite
         run: |
