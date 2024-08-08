@@ -20,7 +20,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npx install
 
       - name: List node_modules/.bin
         run: ls node_modules/.bin
@@ -35,7 +35,7 @@ jobs:
         run: echo $PATH
 
       - name: Build the project
-        run: npm run build
+        run: npx run build
 
       - name: Archive files
         uses: a7ul/tar-action@v1.1.0
@@ -43,7 +43,7 @@ jobs:
           command: c
           cwd: "./"
           files: |
-            ./dist
+            dist
             captain-definition
             package.json
             .env
