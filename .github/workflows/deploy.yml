@@ -20,7 +20,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npx install
+        run: npm install
 
       - name: List node_modules/.bin
         run: ls node_modules/.bin
@@ -35,7 +35,7 @@ jobs:
         run: echo $PATH
 
       - name: Build the project
-        run: npx run build
+        run: npm run build
 
       - name: Archive files
         uses: a7ul/tar-action@v1.1.0
