@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0', // Permite conexiones desde fuera del contenedor
-    port: 5173 // El puerto debe coincidir con el expuesto
+    port: 80 // El puerto debe coincidir con el expuesto
   }
   
 })
