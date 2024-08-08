@@ -40,10 +40,10 @@ jobs:
           cwd: "./"
           files: |
             ./dist/
-            captain-definition
-            package.json
-            Dockerfile
-            .env
+            ./captain-definition
+            ./package.json
+            ./Dockerfile
+            ./.env
           outPath: deploy.tar
 
       - name: Deploy App to CapRover
