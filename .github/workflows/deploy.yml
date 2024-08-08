@@ -20,15 +20,19 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install # Usar npm install en lugar de npm ci para evitar problemas con package-lock.json
 
-      
+      - name: List node_modules/.bin
+        run: ls node_modules/.bin
 
       - name: Create .env file for Vite
         run: echo VITE_API_URL=${{ secrets.VITE_BASE_URL }} >> .env
 
       - name: Print .env file
         run: cat .env
+
+      - name: Print PATH
+        run: echo $PATH
 
       - name: Build the project
         run: npm run build
